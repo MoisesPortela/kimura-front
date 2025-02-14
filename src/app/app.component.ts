@@ -9,5 +9,5 @@ import { HomeComponent } from './pages/home/home.component';
   styleUrl: './app.component.scss',
 })
 export class AppComponent {
-  title = 'api-front';
+  title = 'Kimura-front';
 }

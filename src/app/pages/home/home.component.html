@@ -1,1 +1,58 @@
-<p>home works!</p>
+<div class="container mt-5">
+  <button
+    class="btn btn-success w-100"
+    [routerLink]="['/cadastro']"
+    routerLinkActive="router-link=active"
+  >
+    Cadastrar nova Pessoa
+  </button>
+  <div>
+    <label class="form-label">Pesquisar:</label>
+    <input
+      type="text"
+      class="form-control"
+      placeholder="Qual pessoa deseja buscar?"
+      (input)="search($event)"
+    />
+  </div>
+
+  <table class="table table-hover table-bordered mt-5">
+    <thead class="table-dark">
+      <tr>
+        <th>Id</th>
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>RG</th>
+        <th>E-mail</th>
+        <th>Idade</th>
+        <th>Telefone</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      @if (pessoas.length >0) { @for (pessoa of pessoas; track $index) {
+      <tr>
+        <td>{{ pessoa.id }}</td>
+        <td>{{ pessoa.nome }}</td>
+        <td>{{ pessoa.cpf }}</td>
+        <td>{{ pessoa.rg }}</td>
+        <td>{{ pessoa.email }}</td>
+        <td>{{ pessoa.idade }}</td>
+        <td>{{ pessoa.telefone }}</td>
+        <td>
+          <button class="btn btn-warning mx-2">Editar</button>
+          <button class="btn btn-info mx-2">Detalhes</button>
+          <button class="btn btn-danger mx-2" (click)="excluir(pessoa.id)">
+            Excluir
+          </button>
+        </td>
+      </tr>
+
+      } }@else {
+      <tr>
+        <td colspan="8">Nenhuma pessoa encontrada</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+</div>

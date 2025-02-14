@@ -1,3 +1,3 @@
 export const environment = {
-  UrlApi: 'http://localhost:8080/',
+  UrlApi: 'http://localhost:8080',
 };
