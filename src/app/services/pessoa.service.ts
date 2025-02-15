@@ -21,4 +21,10 @@ export class PessoaService {
       `${this.ApiUrl}pessoas/${id}`
     );
   }
+  CriarPessoa(pessoa: PessoaListar): Observable<Response<PessoaListar[]>> {
+    return this.http.post<Response<PessoaListar[]>>(
+      `${this.ApiUrl}pessoas`,
+      pessoa
+    );
+  }
 }

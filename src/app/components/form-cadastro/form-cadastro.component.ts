@@ -29,7 +29,7 @@ export class FormCadastroComponent implements OnInit {
       cpf: new FormControl(''),
       rg: new FormControl(''),
       email: new FormControl(''),
-      idade: new FormControl(''),
+      idade: new FormControl(0),
       telefone: new FormControl(''),
     });
   }
