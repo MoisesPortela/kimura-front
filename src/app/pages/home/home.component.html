@@ -46,7 +46,12 @@
           >
             Editar
           </button>
-          <button class="btn btn-info mx-2">Detalhes</button>
+          <button
+            class="btn btn-info mx-2"
+            [routerLink]="['/detalhar', pessoa.id]"
+          >
+            Detalhes
+          </button>
           <button class="btn btn-danger mx-2" (click)="excluir(pessoa.id)">
             Excluir
           </button>
