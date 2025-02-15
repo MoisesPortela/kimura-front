@@ -27,4 +27,10 @@ export class PessoaService {
       pessoa
     );
   }
+  DetalharPessoa(id: number): Observable<PessoaListar> {
+    return this.http.get<PessoaListar>(`${this.ApiUrl}pessoas/${id}`);
+  }
+  EditarPessoa(pessoa: PessoaListar): Observable<PessoaListar> {
+    return this.http.put<PessoaListar>(`${this.ApiUrl}pessoas`, pessoa);
+  }
 }
