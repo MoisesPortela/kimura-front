@@ -1,0 +1,176 @@
+@keyframes move {
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.body {
+  display: grid;
+  place-items: center;
+  margin: 0;
+  height: 100vh;
+  padding: 0 24px;
+  background-color: #0a1d32;
+  background-position: 60% 50%;
+  font-family: "Euclid Circular A";
+  color: #f9f9f9;
+  animation: move 20s alternate infinite linear;
+}
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgb(0 0 0 / 30%);
+}
+.card {
+  position: relative;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  margin: 0 20px;
+  padding: 100px 30px 64px;
+  border-radius: 20px;
+  background: rgb(0 0 0 / 16%);
+  backdrop-filter: blur(56px);
+  text-align: center;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  -ms-border-radius: 20px;
+  -o-border-radius: 20px;
+}
+.card > h2 {
+  font-size: 36px;
+  font-weight: 400;
+  color: aliceblue;
+  margin: 0 0 12px;
+}
+.card > h3 {
+  color: rgba(255, 255, 255, 0.58);
+  margin: 0 0 78px;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.form {
+  width: 100%;
+  height: 60vh;
+  margin: 0;
+  display: grid;
+  gap: 18px;
+}
+
+.form :is(input, button) {
+  width: 100%;
+  height: 64px;
+  border-radius: 6px;
+  border: 0;
+  padding: 0 20px;
+  font-size: 18px;
+  font-family: inherit;
+}
+
+.form > input {
+  color: rgb(255 255 255 / 96%);
+  background: rgb(31 65 102 / 50%);
+  outline: none;
+}
+
+.form > input::placeholder {
+  color: rgb(255 255 255 / 38%);
+}
+
+.form > .buttons > button {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  width: 45%;
+  cursor: pointer;
+  color: #f9f9f9;
+  background-color: #0080e9cf;
+  border: 0;
+  font-family: inherit;
+  font-weight: 400;
+  text-align: center;
+  transition: all 0.375s;
+}
+.form > .buttons > #forgot {
+  color: #f9f9f9;
+  background-color: #ab0707;
+}
+.form > .buttons {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.card::-webkit-scrollbar {
+  width: 12px;
+}
+
+.card::-webkit-scrollbar-track {
+  background: rgb(0 0 0 / 16%);
+  border-radius: 20px;
+}
+
+.card::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.58);
+  border-radius: 20px;
+  border: 3px solid rgb(0 0 0 / 16%);
+}
+
+.card {
+  scrollbar-color: rgba(255, 255, 255, 0.58) rgb(0 0 0 / 16%);
+  scrollbar-width: thin;
+}
+
+@media (width >= 448px) or (height >= 448px) {
+  .card {
+    margin: 0;
+    width: 70%;
+    height: 70%;
+    min-height: 400px;
+    min-width: 400px;
+  }
+}
+
+@media (width >= 500px) {
+  body {
+    padding: 0;
+  }
+}
+
+@media (width >= 628px) or (height >= 628px) {
+  .card {
+    position: fixed;
+    top: 25%;
+    right: 15%;
+    left: 15%;
+    bottom: 25%;
+    padding: 44px 44px;
+    height: 50%;
+    width: 50%;
+    max-height: 500px;
+    min-height: auto;
+    max-width: 500px;
+    min-width: auto;
+    display: flex;
+    border-radius: 20px;
+    flex-direction: column;
+    justify-content: center;
+    margin: auto;
+    overflow: auto;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+  }
+
+  .card > h3 {
+    margin: 0 0 48px;
+  }
+}

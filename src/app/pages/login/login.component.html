@@ -1,0 +1,28 @@
+<div class="body">
+  <form class="card" [formGroup]="loginForm" (ngSubmit)="login()">
+    <h2>Kim-App</h2>
+    <h3>Tela de login</h3>
+    <div class="form">
+      <input
+        type="text"
+        placeholder="Login"
+        class="form-control"
+        formControlName="login"
+      />
+      <input
+        type="password"
+        placeholder="Senha"
+        class="form-control"
+        formControlName="password"
+      />
+      <div class="buttons">
+        <button mat-flat-button (click)="login()">
+          <p>Entrar</p>
+        </button>
+        <button mat-flat-button id="forgot">
+          <p>Esqueci a senha</p>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>
