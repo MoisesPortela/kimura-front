@@ -4,6 +4,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
+import { Usuario } from '../../models/Usuario';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './login.component.css',
 })
 export class LoginComponent implements OnInit {
+  usuario!: Usuario;
   loginForm!: FormGroup;
   constructor(private formBuilder: FormBuilder) {}
   ngOnInit() {
@@ -26,6 +28,13 @@ export class LoginComponent implements OnInit {
     });
   }
   login() {
-    console.log(this.loginForm.value);
+    console.log(this.loginForm.value.login);
+    this.usuario = {
+      login: this.loginForm.value.login,
+      email: this.loginForm.value.login,
+      senha: this.loginForm.value.password,
+      telefone: 'xx xxxxx-xxxx',
+    };
+    console.table(this.usuario);
   }
 }
