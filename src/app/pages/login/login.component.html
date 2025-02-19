@@ -5,23 +5,54 @@
     <div class="form">
       <input
         type="text"
-        placeholder="Login"
+        placeholder="email"
         matInput
         class="form-control"
-        formControlName="login"
+        formControlName="email"
+        [ngClass]="{
+          'input-error':
+            loginForm.get('email')?.touched && loginForm.get('email')?.invalid
+        }"
       />
+      <mat-error
+        *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['required']"
+        class="mensagem-erro"
+      >
+        E-mail obrigatório
+      </mat-error>
+      <mat-error
+        *ngIf="loginForm.get('email')?.touched && loginForm.get('email')?.errors?.['email']"
+        class="mensagem-erro"
+      >
+        Formato de email inválido
+      </mat-error>
       <input
         type="password"
         placeholder="Senha"
         matInput
         class="form-control"
         formControlName="password"
+        [ngClass]="{
+          'input-error':
+            loginForm.get('password')?.touched &&
+            loginForm.get('password')?.invalid
+        }"
       />
+      <mat-error
+        *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['required']"
+        class="mensagem-erro"
+      >
+        Senha é obrigatória
+      </mat-error>
       <div class="buttons">
         <button
+          [ngClass]="{
+            'button-invalid':
+              loginForm.invalid && loginForm.get('password')?.touched
+          }"
           [disabled]="loginForm.invalid"
           mat-flat-button
-          (click)="login()"
+          type="submit"
         >
           <p>Entrar</p>
         </button>

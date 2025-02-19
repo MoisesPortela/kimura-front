@@ -3,6 +3,32 @@
     background-position: 0% 50%;
   }
 }
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-5px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+.input-error {
+  border: 2px solid #ff4e4e;
+  animation: shake 0.5s;
+}
+.mensagem-erro {
+  color: #ff4e4e;
+  font-size: 14px;
+  font-weight: bold;
+}
 
 .body {
   display: grid;
@@ -96,6 +122,11 @@ body::after {
   font-weight: 400;
   text-align: center;
   transition: all 0.375s;
+}
+.form > .buttons > .button-invalid {
+  background-color: #a0a0a0d4;
+  color: #fff;
+  cursor: not-allowed;
 }
 .form > .buttons > #forgot {
   color: #f9f9f9;
