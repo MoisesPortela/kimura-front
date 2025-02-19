@@ -1,10 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatButtonModule } from '@angular/material/button';
 import { Usuario } from '../../models/Usuario';
+import { AutenticacaoService } from '../../services/autenticacao.service';
+import { Router } from '@angular/router';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-login',
@@ -13,6 +21,8 @@ import { Usuario } from '../../models/Usuario';
     MatIconModule,
     MatDividerModule,
     MatButtonModule,
+    MatFormFieldModule,
+    CommonModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
@@ -20,21 +30,31 @@ import { Usuario } from '../../models/Usuario';
 export class LoginComponent implements OnInit {
   usuario!: Usuario;
   loginForm!: FormGroup;
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private authService: AutenticacaoService,
+    private router: Router
+  ) {}
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      login: [null],
-      password: [null],
+      login: [null, [Validators.required, Validators.email]],
+      password: [null, Validators.required],
     });
   }
   login() {
-    console.log(this.loginForm.value.login);
     this.usuario = {
-      login: this.loginForm.value.login,
       email: this.loginForm.value.login,
       senha: this.loginForm.value.password,
-      telefone: 'xx xxxxx-xxxx',
     };
-    console.table(this.usuario);
+    this.authService.AutenticarUsuario(this.usuario).subscribe({
+      next: (res) => {
+        console.log(res);
+        console.log('Usuário autenticado com sucesso!');
+        this.router.navigateByUrl('/home');
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
   }
 }

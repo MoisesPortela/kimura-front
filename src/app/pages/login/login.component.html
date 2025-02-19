@@ -6,17 +6,23 @@
       <input
         type="text"
         placeholder="Login"
+        matInput
         class="form-control"
         formControlName="login"
       />
       <input
         type="password"
         placeholder="Senha"
+        matInput
         class="form-control"
         formControlName="password"
       />
       <div class="buttons">
-        <button mat-flat-button (click)="login()">
+        <button
+          [disabled]="loginForm.invalid"
+          mat-flat-button
+          (click)="login()"
+        >
           <p>Entrar</p>
         </button>
         <button mat-flat-button id="forgot">

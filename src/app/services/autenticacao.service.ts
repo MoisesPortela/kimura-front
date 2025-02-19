@@ -12,6 +12,6 @@ export class AutenticacaoService {
   constructor(private http: HttpClient) {}
 
   AutenticarUsuario(usuario: Usuario): Observable<Usuario> {
-    return this.http.post<Usuario>(`${this.apiURL}autenticacao`, usuario);
+    return this.http.post<Usuario>(`${this.apiURL}login`, usuario);
   }
 }
