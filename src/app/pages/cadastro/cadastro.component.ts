@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormComponent } from '../../components/form-cadastro/form.component';
+import { FormComponent } from '../../components/form-component/form.component';
 import { PessoaListar } from '../../models/Pessoa';
 import { PessoaService } from '../../services/pessoa.service';
 import { Router } from '@angular/router';

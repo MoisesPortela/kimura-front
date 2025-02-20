@@ -1,6 +1,6 @@
 import { PessoaService } from './../../services/pessoa.service';
 import { Component, OnInit } from '@angular/core';
-import { FormComponent } from '../../components/form-cadastro/form.component';
+import { FormComponent } from '../../components/form-component/form.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { PessoaListar } from '../../models/Pessoa';
 import { CommonModule } from '@angular/common';

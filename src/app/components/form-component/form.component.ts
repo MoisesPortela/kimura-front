@@ -1,10 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import {
+  FormBuilder,
   FormControl,
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { PessoaListar } from '../../models/Pessoa';
 
@@ -26,9 +28,10 @@ export class FormComponent implements OnInit {
 
   formularioPessoa!: FormGroup;
 
-  constructor() {}
+  constructor(private formBuilder: FormBuilder) {}
 
   ngOnInit() {
+    /*
     this.formularioPessoa = new FormGroup({
       id: new FormControl(this.dadosPessoa ? this.dadosPessoa.id : 0),
       nome: new FormControl(this.dadosPessoa ? this.dadosPessoa.nome : ''),
@@ -39,6 +42,21 @@ export class FormComponent implements OnInit {
       telefone: new FormControl(
         this.dadosPessoa ? this.dadosPessoa.telefone : ''
       ),
+      */
+    this.formularioPessoa = this.formBuilder.group({
+      id: [this.dadosPessoa ? this.dadosPessoa.id : 0],
+      nome: [this.dadosPessoa ? this.dadosPessoa.nome : ''],
+      cpf: [this.dadosPessoa ? this.dadosPessoa.cpf : '', Validators.required],
+      rg: [this.dadosPessoa ? this.dadosPessoa.rg : '', Validators.required],
+      email: [
+        this.dadosPessoa ? this.dadosPessoa.email : '',
+        [Validators.email, Validators.required],
+      ],
+      idade: [this.dadosPessoa ? this.dadosPessoa.idade : 0],
+      telefone: [
+        this.dadosPessoa ? this.dadosPessoa.telefone : '',
+        Validators.required,
+      ],
     });
   }
   submit() {
