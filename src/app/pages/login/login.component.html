@@ -44,6 +44,12 @@
       >
         Senha é obrigatória
       </mat-error>
+      <mat-error
+        *ngIf="loginForm.get('password')?.touched && loginForm.get('password')?.errors?.['minLength']"
+        class="mensagem-erro"
+      >
+        A senha deve conter pelo menos 8 caracteres
+      </mat-error>
       <div class="buttons">
         <button
           [ngClass]="{
