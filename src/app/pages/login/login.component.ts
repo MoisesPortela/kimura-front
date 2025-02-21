@@ -38,18 +38,17 @@ export class LoginComponent implements OnInit {
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
       email: [null, [Validators.required, Validators.email]],
-      password: [null, [Validators.required, Validators.minLength(8)]],
+      password: [null, [Validators.required, Validators.minLength(6)]],
     });
   }
   login() {
     this.usuario = {
-      email: this.loginForm.value.login,
+      email: this.loginForm.value.email,
       senha: this.loginForm.value.password,
     };
     this.authService.AutenticarUsuario(this.usuario).subscribe({
       next: (res) => {
         console.log(res);
-        console.log('Usuário autenticado com sucesso!');
         this.router.navigateByUrl('/home');
       },
       error: (err) => {
