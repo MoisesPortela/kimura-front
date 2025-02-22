@@ -5,14 +5,25 @@ const KEY = 'authToken';
   providedIn: 'root',
 })
 export class TokenService {
+  private isLocalStorageAvailable(): boolean {
+    return typeof localStorage !== 'undefined';
+  }
+
   salvarToken(token: string) {
-    return localStorage.setItem(KEY, token);
+    if (this.isLocalStorageAvailable()) {
+      return localStorage.setItem(KEY, token);
+    }
   }
   excluirToken() {
-    localStorage.removeItem(KEY);
+    if (this.isLocalStorageAvailable()) {
+      localStorage.removeItem(KEY);
+    }
   }
   retornarToken() {
-    return localStorage.getItem(KEY) ?? '';
+    if (this.isLocalStorageAvailable()) {
+      return localStorage.getItem(KEY);
+    }
+    return null;
   }
   possuiToken() {
     //as duas exclamações transforma a string em boolean

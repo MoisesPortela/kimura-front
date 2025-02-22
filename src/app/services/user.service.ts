@@ -16,8 +16,10 @@ export class UserService {
   }
   decodificarJWT() {
     const token = this.tokenService.retornarToken();
-    const user = jwtDecode(token) as Usuario;
-    this.userSubject.next(user);
+    if (token) {
+      const user = jwtDecode(token) as Usuario;
+      this.userSubject.next(user);
+    }
   }
   retornarUser() {
     return this.userSubject.asObservable();
