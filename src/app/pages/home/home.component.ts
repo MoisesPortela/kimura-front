@@ -1,3 +1,4 @@
+import { TokenService } from './../../services/token.service';
 import { Component, OnInit } from '@angular/core';
 import { PessoaService } from '../../services/pessoa.service';
 import { PessoaListar } from '../../models/Pessoa';
@@ -12,11 +13,17 @@ import { RouterModule } from '@angular/router';
 export class HomeComponent implements OnInit {
   pessoas: PessoaListar[] = [];
   pessoasGeral: PessoaListar[] = [];
+  token = '';
 
-  constructor(private servicePessoa: PessoaService) {}
+  constructor(
+    private servicePessoa: PessoaService,
+    private tokenService: TokenService
+  ) {}
 
   ngOnInit(): void {
-    this.servicePessoa.ListarPessoas().subscribe((response) => {
+    this.token = this.tokenService.retornarToken();
+    console.log(this.token);
+    this.servicePessoa.ListarPessoas(this.token).subscribe((response) => {
       this.pessoas = response.content;
       this.pessoasGeral = response.content;
     });
@@ -32,7 +39,7 @@ export class HomeComponent implements OnInit {
   }
 
   excluir(id: number) {
-    this.servicePessoa.DeletarPessoas(id).subscribe(() => {
+    this.servicePessoa.DeletarPessoas(id, this.token).subscribe(() => {
       this.pessoasGeral = this.pessoasGeral.filter(
         (usuario) => usuario.id !== id
       );

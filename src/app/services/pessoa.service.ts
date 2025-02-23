@@ -1,7 +1,7 @@
 import { PessoaListar } from './../models/Pessoa';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Response } from '../models/Response';
 
@@ -13,24 +13,53 @@ export class PessoaService {
 
   constructor(private http: HttpClient) {}
 
-  ListarPessoas(): Observable<Response<PessoaListar[]>> {
-    return this.http.get<Response<PessoaListar[]>>(`${this.ApiUrl}pessoas`);
+  ListarPessoas(token: string): Observable<Response<PessoaListar[]>> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<Response<PessoaListar[]>>(`${this.ApiUrl}pessoas`, {
+      headers,
+    });
   }
-  DeletarPessoas(id: number): Observable<Response<PessoaListar[]>> {
+  DeletarPessoas(
+    id: number,
+    token: string
+  ): Observable<Response<PessoaListar[]>> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
     return this.http.delete<Response<PessoaListar[]>>(
-      `${this.ApiUrl}pessoas/${id}`
+      `${this.ApiUrl}pessoas/${id}`,
+      { headers }
     );
   }
-  CriarPessoa(pessoa: PessoaListar): Observable<Response<PessoaListar[]>> {
+  CriarPessoa(
+    pessoa: PessoaListar,
+    token: string
+  ): Observable<Response<PessoaListar[]>> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
     return this.http.post<Response<PessoaListar[]>>(
       `${this.ApiUrl}pessoas`,
-      pessoa
+      pessoa,
+      { headers }
     );
   }
-  DetalharPessoa(id: number): Observable<PessoaListar> {
-    return this.http.get<PessoaListar>(`${this.ApiUrl}pessoas/${id}`);
+  DetalharPessoa(id: number, token: string): Observable<PessoaListar> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.get<PessoaListar>(`${this.ApiUrl}pessoas/${id}`, {
+      headers,
+    });
   }
-  EditarPessoa(pessoa: PessoaListar): Observable<PessoaListar> {
-    return this.http.put<PessoaListar>(`${this.ApiUrl}pessoas`, pessoa);
+  EditarPessoa(pessoa: PessoaListar, token: string): Observable<PessoaListar> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`,
+    });
+    return this.http.put<PessoaListar>(`${this.ApiUrl}pessoas`, pessoa, {
+      headers,
+    });
   }
 }

@@ -20,10 +20,10 @@ export class TokenService {
     }
   }
   retornarToken() {
-    if (this.isLocalStorageAvailable()) {
-      return localStorage.getItem(KEY);
+    if (!this.isLocalStorageAvailable()) {
+      return '';
     }
-    return null;
+    return localStorage.getItem(KEY) ?? '';
   }
   possuiToken() {
     //as duas exclamações transforma a string em boolean

@@ -1,3 +1,4 @@
+import { TokenService } from './../../services/token.service';
 import { Component } from '@angular/core';
 import { FormComponent } from '../../components/form-component/form.component';
 import { PessoaListar } from '../../models/Pessoa';
@@ -13,10 +14,16 @@ import { Router } from '@angular/router';
 export class CadastroComponent {
   btnAcao = 'Cadastrar';
   descTitulo = 'Cadastrar Pessoa';
-  constructor(private pessoaService: PessoaService, private router: Router) {}
+  token = '';
+  constructor(
+    private pessoaService: PessoaService,
+    private router: Router,
+    private tokenService: TokenService
+  ) {}
 
   criarPessoa($event: PessoaListar) {
-    this.pessoaService.CriarPessoa($event).subscribe((res) => {
+    this.token = this.tokenService.retornarToken();
+    this.pessoaService.CriarPessoa($event, this.token).subscribe((res) => {
       this.router.navigate(['/']);
     });
   }
