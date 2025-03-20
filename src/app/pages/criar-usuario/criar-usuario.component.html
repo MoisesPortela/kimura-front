@@ -1,1 +1,53 @@
-<p>criar-usuario works!</p>
+<div class="body">
+  <form class="fundo" [formGroup]="userForm" (ngSubmit)="criarUser()">
+    <h2>Criar conta</h2>
+    <div class="form">
+      <input
+        type="text"
+        placeholder="email"
+        matInput
+        class="form-control"
+        formControlName="email"
+      />
+      <input
+        type="text"
+        placeholder="Confirme o E-mail"
+        matInput
+        class="form-control"
+        formControlName="email"
+      />
+      <input
+        type="password"
+        placeholder="Senha"
+        matInput
+        class="form-control"
+        formControlName="password"
+      />
+      <input
+        type="password"
+        placeholder="Confirme a senha"
+        matInput
+        class="form-control"
+        formControlName="password"
+      />
+      <select
+        matNativeControl
+        class="form-control"
+        formControlName="tipoPerfil"
+      >
+        <option value="" disabled selected>Selecione o tipo de perfil</option>
+        <option *ngFor="let item of roles" [value]="item.valor">
+          {{ item.nome }}
+        </option>
+      </select>
+      <div class="buttons">
+        <button mat-flat-button type="submit">
+          <p>Criar conta</p>
+        </button>
+        <button mat-flat-button id="forgot" type="button" (click)="voltar()">
+          <p>Voltar</p>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

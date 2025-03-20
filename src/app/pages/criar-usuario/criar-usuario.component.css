@@ -48,7 +48,7 @@ body::after {
   inset: 0;
   background: rgb(0 0 0 / 30%);
 }
-.card {
+.fundo {
   position: relative;
   z-index: 3;
   width: 100%;
@@ -68,13 +68,13 @@ body::after {
   -ms-border-radius: 20px;
   -o-border-radius: 20px;
 }
-.card > h2 {
+.fundo > h2 {
   font-size: 36px;
   font-weight: 400;
   color: aliceblue;
   margin: 0 0 12px;
 }
-.card > h3 {
+.fundo > h3 {
   color: rgba(255, 255, 255, 0.58);
   margin: 0 0 78px;
   font-weight: 400;
@@ -89,7 +89,7 @@ body::after {
   gap: 18px;
 }
 
-.form :is(input, button) {
+.form :is(input, select, button) {
   width: 100%;
   height: 64px;
   border-radius: 6px;
@@ -106,6 +106,16 @@ body::after {
 }
 
 .form > input::placeholder {
+  color: rgb(255 255 255 / 38%);
+}
+
+.form > select {
+  color: rgb(255 255 255 / 96%);
+  background: rgb(31 65 102 / 50%);
+  outline: none;
+}
+
+.form > select::placeholder {
   color: rgb(255 255 255 / 38%);
 }
 
@@ -139,28 +149,28 @@ body::after {
   align-items: center;
 }
 
-.card::-webkit-scrollbar {
+.fundo::-webkit-scrollbar {
   width: 12px;
 }
 
-.card::-webkit-scrollbar-track {
+.fundo::-webkit-scrollbar-track {
   background: rgb(0 0 0 / 16%);
   border-radius: 20px;
 }
 
-.card::-webkit-scrollbar-thumb {
+.fundo::-webkit-scrollbar-thumb {
   background-color: rgba(255, 255, 255, 0.58);
   border-radius: 20px;
   border: 3px solid rgb(0 0 0 / 16%);
 }
 
-.card {
+.fundo {
   scrollbar-color: rgba(255, 255, 255, 0.58) rgb(0 0 0 / 16%);
   scrollbar-width: thin;
 }
 
 @media (width >= 448px) or (height >= 448px) {
-  .card {
+  .fundo {
     margin: 0;
     width: 70%;
     height: 70%;
@@ -176,18 +186,18 @@ body::after {
 }
 
 @media (width >= 628px) or (height >= 628px) {
-  .card {
+  .fundo {
     position: fixed;
     top: 25%;
-    right: 15%;
-    left: 15%;
+    right: auto;
+    left: auto;
     bottom: 25%;
     padding: 44px 44px;
-    height: 50%;
-    width: 50%;
-    max-height: 500px;
+    height: 100%;
+    width: 100%;
+    max-height: 100%;
     min-height: auto;
-    max-width: 500px;
+    max-width: 100%;
     min-width: auto;
     display: flex;
     border-radius: 20px;
@@ -201,7 +211,7 @@ body::after {
     -o-border-radius: 20px;
   }
 
-  .card > h3 {
+  .fundo > h3 {
     margin: 0 0 48px;
   }
 }
